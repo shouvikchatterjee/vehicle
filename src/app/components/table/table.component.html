@@ -1,0 +1,48 @@
+<table
+  id="myTable"
+  class="table table-striped table-bordered w-75 mx-auto">
+  <thead>
+    <tr>
+      <th class="check d-flex align-items-center justify-content-center">
+        <input
+          (change)="checkAll($event)"
+          type="checkbox"
+          class="form-check-input">
+      </th>
+      <th
+        *ngFor="let col of colMetaData"
+        [width]="col.width+'px'"
+        (click)="sorting(col)"
+        class="pointer">
+        {{col.label}}
+        <i
+          [ngClass]="{'fa-chevron-up': col.asc,
+          'fa-chevron-down': !col.asc}"
+          class="ml-2 fa">
+        </i>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of rowDatas">
+      <td class="check d-flex align-items-center justify-content-center">
+        <input
+          [id]="row.vin"
+          type="checkbox"
+          class="form-check-input">
+      </td>
+      <td>{{row.make}}</td>
+      <td>{{row.year}}</td>
+      <td>{{row.soldDate}}</td>
+      <td>{{row.vin}}</td>
+      <td>{{row.model}}</td>
+      <td>{{row.series}}</td>
+      <td>{{row.locationCity}}</td>
+      <td>{{row.odometer}}</td>
+      <td>{{row.odometerUnitOfMeasure}}</td>
+      <td>{{row.stateAbbreviation}}</td>
+      <td>{{row.interiorColor}}</td>
+      <td>{{row.exteriorColor}}</td>
+    </tr>
+  </tbody>
+</table>

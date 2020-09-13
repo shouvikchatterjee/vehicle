@@ -1,0 +1,160 @@
+<!-- <div class="container bg-info vh-100 d-flex align-items-center justify-content-center"> -->
+    <div
+    *ngIf="!isLoader"
+    [class.alternative]="isAlternativeTheme"
+    fxLayoutAlign="center center"
+    fxFill
+    class="container">
+    <mat-card
+        fxFlex="25"
+        *ngIf="!xsDevice && !smDevice">
+        <mat-toolbar
+            color="primary"
+            class="justify-content-center">
+            Log In
+        </mat-toolbar>
+        <form
+            fxLayoutAlign="stretch"
+            fxLayout="column"
+            [formGroup]="loginForm">
+            <mat-form-field
+                appearance="outline">
+                <input
+                    (focus)="hideErrorMessage()"
+                    formControlName="userName"
+                    matInput
+                    [ngClass]="{'is-invalid': loginForm.get('userName').touched
+                    && loginForm.get('userName').hasError('required')}"
+                    placeholder="User Name*">
+            </mat-form-field>
+            <!-- [class.error]="isLoginFailed" -->
+            <mat-form-field
+                appearance="outline">
+                <input
+                    (focus)="hideErrorMessage()"
+                    formControlName="password"
+                    matInput
+                    [type]="isHidePassword ? 'password' : 'text'"
+                    [ngClass]="{'is-invalid': loginForm.get('password').touched
+                    && loginForm.get('password').hasError('required')}"
+                    placeholder="Password*">
+                <mat-icon
+                    matSuffix
+                    (click)="isHidePassword= !isHidePassword">
+                    {{isHidePassword ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+            </mat-form-field>
+            <mat-error
+                *ngIf="isLoginFailed"
+                class="alert alert-danger">
+                <mat-label>User doesn't exist.</mat-label>
+            </mat-error>
+            <mat-error
+                *ngIf="isServerError"
+                class="alert alert-danger">
+                <mat-label>{{errorName}}</mat-label><br>
+                <mat-label>{{errorMessage}}</mat-label>
+            </mat-error>
+            <button
+                [disabled]="loginForm.invalid"
+                (click)="logIn()"
+                mat-raised-button
+                type="submit"
+                color="primary">Log In</button>
+        </form>
+    </mat-card>
+    <mat-card
+        fxFlex="50"
+        *ngIf="smDevice">
+        <mat-toolbar
+            color="primary"
+            class="justify-content-center">Log In</mat-toolbar>
+        <form
+            fxLayoutAlign="stretch"
+            fxLayout="column"
+            [formGroup]="loginForm">
+            <mat-form-field>
+                <input
+                    formControlName="userName"
+                    matInput
+                    placeholder="User Name">
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                    formControlName="password"
+                    matInput
+                    [type]="isHidePassword ? 'password' : 'text'"
+                    placeholder="Password">
+                <mat-icon
+                    matSuffix
+                    (click)="isHidePassword= !isHidePassword">
+                    {{isHidePassword ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+            </mat-form-field>
+            <mat-error
+                *ngIf="isLoginFailed"
+                class="alert alert-danger">
+                <mat-label>User doesn't exist.</mat-label>
+            </mat-error>
+            <mat-error
+                *ngIf="isServerError"
+                class="alert alert-danger">
+                <mat-label>{{errorName}}</mat-label><br>
+                <mat-label>{{errorMessage}}</mat-label>
+            </mat-error>
+            <button
+                [disabled]="loginForm.invalid"
+                (click)="logIn()"
+                mat-raised-button
+                type="submit"
+                color="primary">Log In</button>
+        </form>
+    </mat-card>
+    <mat-card
+        fxFlex="75"
+        *ngIf="xsDevice">
+        <mat-toolbar
+            color="primary"
+            class="justify-content-center">Log In</mat-toolbar>
+        <form
+            fxLayoutAlign="stretch"
+            fxLayout="column"
+            [formGroup]="loginForm">
+            <mat-form-field>
+                <input
+                    formControlName="userName"
+                    matInput
+                    placeholder="User Name">
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                    formControlName="password"
+                    matInput
+                    [type]="isHidePassword ? 'password' : 'text'"
+                    placeholder="Password">
+                <mat-icon
+                    matSuffix
+                    (click)="isHidePassword= !isHidePassword">
+                    {{isHidePassword ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+            </mat-form-field>
+            <mat-error
+                *ngIf="isLoginFailed"
+                class="alert alert-danger">
+                <mat-label>User doesn't exist.</mat-label>
+            </mat-error>
+            <mat-error
+                *ngIf="isServerError"
+                class="alert alert-danger">
+                <mat-label>{{errorName}}</mat-label><br>
+                <mat-label>{{errorMessage}}</mat-label>
+            </mat-error>
+            <button
+                [disabled]="loginForm.invalid"
+                (click)="logIn()"
+                mat-raised-button
+                type="submit"
+                color="primary">Log In</button>
+        </form>
+    </mat-card>
+</div>

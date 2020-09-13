@@ -1,0 +1,16 @@
+button {
+    padding: 0 20px;
+}
+.mat-icon-button {
+    width: max-content;
+    height: auto;
+}
+.user-name {
+    color: #ff5200fa;
+    font-weight: bold;
+}
+button:hover {
+    color: #ff5200fa;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}

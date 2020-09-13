@@ -1,0 +1,60 @@
+{
+  "login": [
+    {
+      "id": 1,
+      "username": "test",
+      "password": "test",
+      "token": "test"
+    },
+    {
+      "id": 2,
+      "username": "test1",
+      "password": "test1",
+      "token": "test1"
+    }
+  ],
+  "vehicles": [
+    {
+      "soldDate": "1576617480000",
+      "year": 2008,
+      "make": "BMW",
+      "model": "5 SERIES",
+      "series": "550I",
+      "vin": "WBANW53578CT54274",
+      "locationCity": "SANFORD",
+      "stateAbbreviation": "FL",
+      "odometer": 94277,
+      "odometerUnitOfMeasure": "mi",
+      "exteriorColor": "BLUE",
+      "interiorColor": null
+    },
+    {
+      "soldDate": "157664780000",
+      "year": 2015,
+      "make": "PORSCHE",
+      "model": "5 SERIES",
+      "series": "5587",
+      "vin": "HGFR53578CT54274",
+      "locationCity": "CALIFORNIA",
+      "stateAbbreviation": "CL",
+      "odometer": 268777,
+      "odometerUnitOfMeasure": "mi",
+      "exteriorColor": "BLACK",
+      "interiorColor": null
+    },
+    {
+      "soldDate": "3576687480000",
+      "year": 2012,
+      "make": "AUDI",
+      "model": "T SERIES",
+      "series": "8450I",
+      "vin": "KHTD53578CT54274",
+      "locationCity": "SANFORD",
+      "stateAbbreviation": "FL",
+      "odometer": 756377,
+      "odometerUnitOfMeasure": "ok",
+      "exteriorColor": "RED",
+      "interiorColor": "GREEN"
+    }
+  ]
+}

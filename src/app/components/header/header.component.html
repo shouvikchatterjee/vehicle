@@ -1,0 +1,85 @@
+<div class="header">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row
+            *ngIf="!xsDevice"
+            fxLayout="row"
+            fxLayoutAlign="space-between center">
+            <div>
+                <button
+                    mat-icon-button
+                    matTooltip="Home">
+                    <mat-icon>home</mat-icon>
+                </button>
+                <button mat-button>
+                    Services
+                </button>
+                <button mat-button>
+                    About Us
+                </button>
+                <button mat-button>
+                    Contact Us
+                </button>
+                <button mat-button>
+                    Careers
+                </button>
+            </div>
+            <div>
+                <mat-label>Logged in as <strong class="user-name">{{userName}}</strong></mat-label>
+            </div>
+            <div>                
+                <button
+                    (click)="onLogOut()"
+                    mat-icon-button
+                    matTooltip="Log Out">
+                    <mat-icon>logout</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar-row>
+        <mat-toolbar-row
+            *ngIf="xsDevice"
+            fxLayout="row"
+            fxLayoutAlign="space-between center">
+            <div>
+                <button
+                    mat-icon-button
+                    matTooltip="Home">
+                    <mat-icon>home</mat-icon>
+                </button>
+            </div>
+            <div>
+                <mat-label>Logged in as <strong class="user-name">{{userName}}</strong></mat-label>
+            </div>
+            <div>
+                <button
+                    mat-icon-button
+                    [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>satellite</mat-icon>
+                        <span>Services</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>account_circle</mat-icon>
+                        <span>About Us</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>contacts</mat-icon>
+                        <span>Contact Us</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>school</mat-icon>
+                        <span>Careers</span>
+                    </button>
+                    <button
+                        (click)="onLogOut()"
+                        mat-menu-item>
+                        <mat-icon>logout</mat-icon>
+                        <span>Log Out</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

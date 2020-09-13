@@ -1,0 +1,29 @@
+<div
+    fxLayout="column"
+    fxLayoutAlign="space-between none"
+    class="home_container">
+    <div>
+        <app-header
+            [xsDevice]="xsDevice"
+            [smDevice]="smDevice">
+        </app-header>
+    </div>
+    <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="body w-100">
+        <div class="left-panel">
+            <app-filter-selection></app-filter-selection>
+        </div>
+        <div class="right-panel">
+            <app-filter-menu></app-filter-menu>
+            <app-table
+                [colMetaData]="colMetaData"
+                [rowDatas]="rowDatas">
+            </app-table>
+        </div>
+    </div>
+    <div>
+        <app-footer></app-footer>
+    </div>
+</div>
