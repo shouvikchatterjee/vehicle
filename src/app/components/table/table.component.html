@@ -23,8 +23,8 @@
       </th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let row of rowDatas">
+  <tbody *ngIf="tableData.length">
+    <tr *ngFor="let row of tableData">
       <td class="check d-flex align-items-center justify-content-center">
         <input
           [id]="row.vin"

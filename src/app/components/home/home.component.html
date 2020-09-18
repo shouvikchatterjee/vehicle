@@ -18,9 +18,13 @@
         <div class="right-panel">
             <app-filter-menu></app-filter-menu>
             <app-table
-                [colMetaData]="colMetaData"
-                [rowDatas]="rowDatas">
+                [colMetaData]="tableData.colMetaData"
+                [rowDatas]="tableData.rowDatas"
+                [rowsToBeShown]="tableData.rowsToBeShown">
             </app-table>
+            <app-paginator
+                [numberOfRows]="(tableData.rowDatas.length>0)?tableData.rowDatas.length:5">
+            </app-paginator>
         </div>
     </div>
     <div>

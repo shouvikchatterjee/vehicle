@@ -1,0 +1,31 @@
+<nav class="mx-auto">
+    <ul class="pagination justify-content-end">
+        <li
+            [ngClass]="{'disabled': selectedBtn == 1}"
+            class="page-item">
+            <a
+                (click)="prevHandler()"
+                class="page-link">
+                Previous
+            </a>
+        </li>
+        <li class="page-item">
+            <a
+                *ngFor="let item of this.numberOfPages"
+                (click)="pageHandler(item)"
+                [ngClass]="{'active': selectedBtn == item}"
+                class="page-link">
+                {{item}}
+            </a>
+        </li>
+        <li
+            [ngClass]="{'disabled': selectedBtn == this.numberOfPages.length}"
+            class="page-item">
+            <a
+                (click)="nextHandler()"
+                class="page-link">
+                Next
+            </a>
+        </li>
+    </ul>
+</nav>

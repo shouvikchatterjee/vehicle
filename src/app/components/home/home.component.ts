@@ -1,5 +1,6 @@
+import { TableDataService } from './../../services/table-data.service';
 import { DataResolverService } from './../../services/data-resolver.service';
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { LoaderService } from 'src/app/services/loader.service';
 
@@ -12,12 +13,16 @@ export class HomeComponent implements OnInit {
   xsDevice = false;
   smDevice = false;
   isLoader = false;
-  colMetaData;
-  rowDatas;
+  tableData={
+    colMetaData:[],
+    rowDatas:[],
+    rowsToBeShown:5
+  }
 
   constructor(
     private mediaObserver: MediaObserver,
     private loaderService: LoaderService,
+    private tableDataService: TableDataService,
     private dataResolverService: DataResolverService) { }
 
   ngOnInit(): void {
@@ -26,14 +31,21 @@ export class HomeComponent implements OnInit {
       this.smDevice = (media.mqAlias == 'sm') ? true : false;
       // console.log(media.mqAlias);
     })
+
+    this.tableDataService.setRowsToBeShown(this.tableData.rowsToBeShown);
+
     this.loaderService.showLoader();
     this.dataResolverService.getVehiclesDatas().subscribe(datas => {
       this.loaderService.hideLoader();
-      console.log('datas:', datas);
-      this.rowDatas = datas;
+      this.tableData.rowDatas = datas;
+      console.log('this.tableData.rowDatas:', this.tableData.rowDatas);
+      //this.changeDetectorRef.detectChanges();
+    },error=>{
+      console.log('error:', error);
+      this.loaderService.hideLoader();
     });
     
-    this.colMetaData = [
+    this.tableData.colMetaData = [
       {
         id: 1,
         label: 'Make',
@@ -119,6 +131,18 @@ export class HomeComponent implements OnInit {
         asc:false
       }
     ]
+  }
+
+  showNumberOfRows(rowNum){
+    this.tableData.rowsToBeShown = rowNum;
+  }
+
+  prevHandler(e) {
+    console.log(e);
+  }
+
+  nextHandler(e) {
+    console.log(e);
   }
 
 }

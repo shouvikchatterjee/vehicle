@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, SimpleChanges, SimpleChange, ElementRef } from '@angular/core';
+import { TableDataService } from './../../services/table-data.service';
+import { Component, Input, OnChanges, SimpleChanges, SimpleChange, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -8,20 +9,61 @@ import { Component, Input, OnChanges, SimpleChanges, SimpleChange, ElementRef } 
 export class TableComponent implements OnChanges {
   @Input() colMetaData = [];
   @Input() rowDatas = [];
+  @Input() rowsToBeShown;
   inputEl;
   table;
+  pageNumber = 1;
+  tableData = [];
+  iterator = 0;
+  rows;
 
-  constructor(private el: ElementRef) { }
+  constructor(
+    private tableDataService: TableDataService,
+    private el: ElementRef) { }
 
-  ngOnChanges(simpleChanges: SimpleChanges) {
-    console.log('simpleChanges:', simpleChanges);
-    const rowDatas: SimpleChange = simpleChanges.rowDatas;
-    const colMetaData: SimpleChange = simpleChanges.colMetaData;
-    if (rowDatas) {
-      console.log('rowDatas:', rowDatas.currentValue);
+  ngOnChanges() {
+    console.log('this.rowDatas.length:', this.rowDatas.length);
+    let i;
+    this.tableData = [];
+    if (this.rowDatas.length > 0) {
+      for (i = 0; i < this.rows; i++) {
+        if (this.rowDatas[i]) {
+          this.tableData.push(this.rowDatas[i]);
+        }
+      }
+      console.log('tableData:', this.tableData);
     }
-    if (colMetaData) {
-      console.log('colMetaData:', colMetaData.currentValue);
+  }
+
+  ngOnInit() {
+    this.rows = this.tableDataService.getRowsToBeShown();
+    this.tableDataService.btnState.subscribe(btnVal => {
+      this.buttonHandler(btnVal);
+    });
+  }
+
+  buttonHandler(btnVal) {
+    // console.log('btnVal:', btnVal);
+    if (btnVal === 'next') {
+      this.pageNumber++;
+      this.iterator += this.rowsToBeShown;
+      this.rows += this.rowsToBeShown;
+    } else if (btnVal === 'prev') {
+      this.pageNumber--;
+      this.iterator -= this.rowsToBeShown;
+      this.rows -= this.rowsToBeShown;
+    } else {
+      this.pageNumber == btnVal;
+      this.iterator = (btnVal-1) * this.rowsToBeShown;
+      this.rows = this.iterator + this.rowsToBeShown;
+    }
+    this.tableData = [];
+    console.log('this.iterator:', this.iterator);
+    console.log('rows:', this.rows);
+    for (let i = this.iterator; i < this.rows; i++) {
+      if (this.rowDatas[i]) {
+        this.tableData.push(this.rowDatas[i]);
+      }
     }
   }
 
