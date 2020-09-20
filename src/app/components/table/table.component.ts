@@ -1,5 +1,5 @@
 import { TableDataService } from './../../services/table-data.service';
-import { Component, Input, OnChanges, SimpleChanges, SimpleChange, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnChanges, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -58,8 +58,6 @@ export class TableComponent implements OnChanges {
       this.rows = this.iterator + this.rowsToBeShown;
     }
     this.tableData = [];
-    console.log('this.iterator:', this.iterator);
-    console.log('rows:', this.rows);
     for (let i = this.iterator; i < this.rows; i++) {
       if (this.rowDatas[i]) {
         this.tableData.push(this.rowDatas[i]);

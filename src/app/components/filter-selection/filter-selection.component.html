@@ -1,1 +1,29 @@
-<p>filter-selection works!</p>
+<div class="h-100 overflow-auto">
+    <div
+        *ngFor="let data of filterHeaders"
+        class="mt-2 float-left w-100">
+        {{data.label}}
+        <i
+            (click)="data.asc= !data.asc"
+            [ngClass]="{'fa-chevron-up': data.asc,
+            'fa-chevron-down': !data.asc}"
+            class="float-right fa"></i>
+        <div *ngIf="data.asc">
+            <ng-container *ngIf="filterDatas.length">
+                <div
+                    *ngFor="let row of make"
+                    class="d-flex justify-content-between">
+                    <div class="custom-control custom-checkbox">
+                        <input
+                            [id]="row"
+                            type="checkbox"
+                            class="custom-control-input">
+                    </div>
+                    <div>
+                        {{row}}
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

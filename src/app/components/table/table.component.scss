@@ -1,3 +1,18 @@
-.pointer{
+@mixin table-info {
+    vertical-align: middle;
+    text-align: center;
+}
+.pointer {
     cursor: pointer;
+}
+.table {
+    td {
+        @include table-info;
+    }
+    th {
+        @include table-info;
+    }
+}
+.custom-control-input {
+    opacity: 1;
 }

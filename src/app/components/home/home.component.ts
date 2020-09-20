@@ -1,6 +1,7 @@
+import { ActivatedRoute } from '@angular/router';
 import { TableDataService } from './../../services/table-data.service';
 import { DataResolverService } from './../../services/data-resolver.service';
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { LoaderService } from 'src/app/services/loader.service';
 
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit {
     private dataResolverService: DataResolverService) { }
 
   ngOnInit(): void {
+
     this.mediaObserver.media$.subscribe((media: MediaChange) => {
       this.xsDevice = (media.mqAlias == 'xs') ? true : false;
       this.smDevice = (media.mqAlias == 'sm') ? true : false;
@@ -38,8 +40,6 @@ export class HomeComponent implements OnInit {
     this.dataResolverService.getVehiclesDatas().subscribe(datas => {
       this.loaderService.hideLoader();
       this.tableData.rowDatas = datas;
-      console.log('this.tableData.rowDatas:', this.tableData.rowDatas);
-      //this.changeDetectorRef.detectChanges();
     },error=>{
       console.log('error:', error);
       this.loaderService.hideLoader();

@@ -1,5 +1,5 @@
 import { TableDataService } from './../../services/table-data.service';
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, SimpleChange, ElementRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-paginator',
@@ -16,13 +16,11 @@ export class PaginatorComponent implements OnInit {
 
   ngOnChanges() {
     let i, j;
-    console.log('this.numberOfRows:', this.numberOfRows);
     this.numberOfPages = [];
     for (i = this.rowsToBeShown, j = 1; i < this.numberOfRows; i += this.rowsToBeShown, j++) {
       this.numberOfPages.push(j);
     }
     this.numberOfPages.push(j);
-    console.log('this.numberOfPages:', this.numberOfPages);
   }
 
   ngOnInit(): void {
